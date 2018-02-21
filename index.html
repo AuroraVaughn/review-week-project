@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My test page</title>
+  <link rel='stylesheet' href='grid.css' type:='text/css'>
+
+</head>
+
+<body>
+
+  <div class='room-channel-container'>
+    <div class='page-banner'>
+      <h1>Title of Page</h1>
+    </div>
+
+    <video id='video' autoplay>
+      <!-- <source src="freeze_bubble.mp4" type="video/mp4"> -->
+    </video>
+    <div class='chat-container'>
+      <div class="chat-window">
+        <p>You have entered the channel</p>
+      </div>
+      <form>
+        <input class='chat-input' type='text' name='message' />
+        <input class='chat-send' type='submit' value='Send'>
+
+      </form>
+    </div>
+
+
+    <div class='channel-container'>
+      <h4>Channels list</h4>
+      <p href='#23'>channel#1</p>
+      <p href='#'>channel#2</p>
+      <p href='#'>channel#3</p>
+      <p href='#'>channel#4</p>
+      <p href='#'>channel#5</p>
+      <p href='#'>channel#6</p>
+      <p href='#'>channel#7</p>
+      <p href='#'>channel#8</p>
+      <p href='#'>channel#9</p>
+      <p href='#'>channel#10</p>
+      <p href='#'>channel#11</p>
+      <p href='#'>channel#12</p>
+    </div>
+    <div class="call-controls">
+      <button id='call'>CALL</button>
+      <button id='end-call'>END</button>
+    </div>
+
+
+  </div>
+  <script>
+    // navigator.getUserMedia = navigator.getUserMedia ||
+    //   navigator.webkitGetUserMedia ||
+    //   navigator.mozGetUserMedia ||
+    //   navigator.msGetUserMedia;
+    var errorCallback = function (e) {
+      console.log('Reeeejected!', e);
+    };
+
+    // Not showing vendor prefixes.
+    navigator.getUserMedia({
+      audio: true, video: {
+        frameRate: 30
+      }
+    }, function (localMediaStream) {
+      var video = document.querySelector('#video');
+      console.log('after query selector', video)
+      video.src = window.URL.createObjectURL(localMediaStream);
+      console.log('after create object url video.src', video.src)
+      // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+      // See crbug.com/110938.
+      video.onloadedmetadata = function (e) {
+        // Ready to go. Do some stuff.
+      };
+    }, errorCallback);
+  </script>
+</body>
+
+</html>

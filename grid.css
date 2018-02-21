@@ -1,0 +1,143 @@
+body {
+    background-color: lightgray;
+}
+
+.room-channel-container {
+    position: relative;
+    min-width: 400px;
+    display: grid;
+    grid-template-columns: minmax(400px, 4fr) minmax(100px, 1fr);
+    grid-template-rows: auto minmax(auto, auto) minmax(250px, auto) minmax(200px, 1fr);
+    grid-gap: none;
+    grid-template-areas: "banner banner" "video channels" "video channels" "chat call"
+}
+
+.channel-container {
+    grid-area: channels;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(177, 177, 177);
+    overflow: scroll;
+    max-height: 44.3vw;
+    overflow: auto;
+    align-content: flex-start;
+}
+
+.channel-container>* {
+    text-decoration: none;
+    margin: 0px;
+    padding: 3px 3px 3px 9px;
+}
+
+.channel-container>p:link,
+.channel-container>p:visited,
+.channel-container>p:link,
+{
+    background-color: rgb(217, 228, 235);
+    color: rgb(131, 131, 135);
+    text-anchor: rgb(131, 131, 135);
+}
+
+.channel-container>p:hover,
+.channel-container>p:active,
+.channel-container>p.current {
+    background-color: rgb(209, 255, 209);
+    color: darkgreen
+}
+
+#video {
+    grid-area: video;
+    width: 100%;
+    padding: 0;
+}
+
+.chat {
+    grid-area: chat;
+    display: flex;
+    overflow: scroll;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    border-color: rgb(177, 177, 177);
+    justify-self: stretch;
+}
+
+.chat-container>form {
+    display: flex;
+}
+
+.chat-window {
+    font-size: 1es m;
+    background-color: rgb(242, 242, 242);
+    height: 200px;
+}
+
+.chat-input {
+    font-size: 1em;
+    border: solid;
+    border-color: rgb(177, 177, 177);
+    flex-grow: 1;
+    width: auto;
+}
+
+.chat-send {
+    grid-area: send;
+    border: solid;
+    border-color: rgb(177, 177, 177)
+}
+
+.page-banner {
+    grid-area: banner;
+    display: flex;
+}
+
+.page-banner h1 {
+    padding-left: 15px;
+    color: rgb(131, 129, 129);
+    font-size: 1.4em;
+    align-self: flex-start;
+}
+
+.call-controls {
+    grid-area: call;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto auto;
+}
+
+#call {
+    /* display: flex; */
+    background-color: lightgreen;
+    border: solid;
+    font-size: 1.6em;
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+#call:hover {
+    background-color: darkgreen;
+    border-color: lightgreen;
+    color: lightgreen;
+}
+
+#end-call {
+    /* display: flex; */
+    background-color: lightpink;
+    border: solid;
+    font-size: 1.6em;
+    border-color: darkred;
+    color: darkred;
+}
+
+#end-call:hover {
+    /* display: flex; */
+    background-color: darkred;
+    border: solid;
+    font-size: 1.6em;
+    border-color: lightpink;
+    color: lightpink;
+}
