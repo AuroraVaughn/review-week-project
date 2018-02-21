@@ -1,5 +1,4 @@
 var express = require('express');
-var nunjucks = require('nunjucks');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
@@ -7,6 +6,11 @@ var app = express();
 
 var router = require('./routes');
 
+
+const PORT = 3000;
+const server = app.listen(PORT, () => console.log(`Video chat server is open on ${PORT}`));
+const io = require('socket.io')(server);
+require('./socket')(io) //this will handle socket requests
 
 app.use(morgan('dev'));
 
@@ -16,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public'));
 
-app.use('/', router);
+app.use('*', router);
 
 
 app.use(function (err, req, res, next) {

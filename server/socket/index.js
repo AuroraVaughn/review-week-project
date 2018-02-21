@@ -15,10 +15,12 @@ module.exports = io => {
     console.log(socket.id, ' has made a persistent connection to the server!');
 
     socket.on('call', call => {
-      socket.emit('new-call', call);
+
+      socket.to(`${call.to}`).emit(call);
+
     });
 
-    socket.on('call-accept', call => {
+    socket.on('call-accept-${}', call => {
       //this action needs an identifier saying who was accepted
       socket.broadcast.emit('call-accept', call);
 
